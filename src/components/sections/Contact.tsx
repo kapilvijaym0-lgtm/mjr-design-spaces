@@ -7,14 +7,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@mjrdesign.com',
-    href: 'mailto:hello@mjrdesign.com'
+    value: 'kapilvijaym0@gmail.com.com',
+    href: 'mailto:kapilvijaym0@gmail.com'
   },
   {
     icon: Phone,
     label: 'Phone',
-    value: '+1 (555) 123-4567',
-    href: 'tel:+15551234567'
+    value: '+91 7996325871',
+    href: 'tel:+917996325871'
   },
   {
     icon: MapPin,
