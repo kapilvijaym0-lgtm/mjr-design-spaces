@@ -153,17 +153,24 @@ All colors MUST be HSL.
   .btn-hero {
     @apply bg-charcoal text-warm-white hover:bg-muted-brown;
     @apply transition-all duration-300 px-8 py-4 rounded-lg font-medium;
+    @apply flex items-center justify-center;
     box-shadow: var(--shadow-soft);
   }
   
   .btn-hero:hover {
     box-shadow: var(--shadow-elegant);
+    transform: translateY(-2px);
   }
   
   .btn-ghost {
     @apply bg-transparent border-2 border-charcoal text-charcoal;
     @apply hover:bg-charcoal hover:text-warm-white;
     @apply transition-all duration-300 px-8 py-4 rounded-lg font-medium;
+    @apply flex items-center justify-center;
+  }
+  
+  .btn-ghost:hover {
+    transform: translateY(-2px);
   }
   
   /* Card Styles */

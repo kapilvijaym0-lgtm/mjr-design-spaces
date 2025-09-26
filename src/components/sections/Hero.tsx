@@ -1,9 +1,19 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Play } from 'lucide-react';
 import FloatingElements from '../3D/FloatingElements';
+import Interactive3DScene from '../3D/Interactive3DScene';
+import ProjectViewer3D from '../3D/ProjectViewer3D';
 import heroImage from '@/assets/hero-interior.jpg';
 
 const Hero = () => {
+  const [show3DScene, setShow3DScene] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+
+  const handle3DElementClick = (element: string) => {
+    setSelectedProject(element);
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
@@ -16,9 +26,16 @@ const Hero = () => {
         <div className="absolute inset-0 bg-background/40 backdrop-blur-[1px]" />
       </div>
 
-      {/* 3D Floating Elements */}
+      {/* 3D Elements - Switch between FloatingElements and Interactive Scene */}
       <div className="absolute inset-0 z-10 opacity-30">
-        <FloatingElements />
+        {show3DScene ? (
+          <Interactive3DScene 
+            onElementClick={handle3DElementClick}
+            enableControls={false}
+          />
+        ) : (
+          <FloatingElements />
+        )}
       </div>
 
       {/* Content */}
@@ -64,9 +81,10 @@ const Hero = () => {
             </button>
             <button
               className="btn-ghost"
-              onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+              onClick={() => setShow3DScene(!show3DScene)}
             >
-              Learn More
+              <Play className="mr-2" size={16} />
+              {show3DScene ? 'Static View' : '3D Interactive'}
             </button>
           </motion.div>
         </motion.div>
@@ -88,6 +106,12 @@ const Hero = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      {/* 3D Project Viewer Modal */}
+      <ProjectViewer3D 
+        projectId={selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 };
